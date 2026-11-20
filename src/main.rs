@@ -2,6 +2,8 @@ use sqlx::postgres::PgPoolOptions;
 
 #[tokio::main]
 async fn main() {
+    dotenvy::dotenv().ok();
+    
     let pool = PgPoolOptions::new()
         .max_connections(20)
         .connect(&std::env::var("DATABASE_URL").unwrap())
